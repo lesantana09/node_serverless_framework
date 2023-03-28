@@ -1,0 +1,23 @@
+service: sls-my-first-node
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+  memorySize: 128
+  timeout: 3
+  architecture: x86_64
+
+functions:
+  index:
+    handler: index.handler
+    description: "Testing NodeJs Lambda"
+    events:
+      - http:
+          path: /
+          method: get
+          cors: true
+      
+
+  
